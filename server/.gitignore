@@ -1,0 +1,10 @@
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Generated Prisma files
+/generated/prisma
