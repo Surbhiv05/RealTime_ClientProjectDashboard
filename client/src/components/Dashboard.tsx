@@ -100,7 +100,7 @@ const Dashboard = () => {
                 const query = params.toString();
 
                 const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}/api/tasks/projects/${selectedProject}${query ? `?${query}` : ""}`,
+                    `${import.meta.env.VITE_API_URL}/api/tasks/project/${selectedProject}${query ? `?${query}` : ""}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
