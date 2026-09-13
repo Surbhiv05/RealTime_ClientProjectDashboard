@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -13,7 +15,7 @@ const Login = () => {
 
         try {
             const response = await fetch(
-                "`${import.meta.env.VITE_API_URL}/api/projects`/api/auth/login",
+                `${API_URL}/api/auth/login`,
                 {
                     method: "POST",
                     headers: {
@@ -42,7 +44,8 @@ const Login = () => {
             setMessage("Login successful");
 
             window.location.reload();
-        } catch {
+        } catch (error) {
+            console.error("Login error:", error);
             setMessage("Unable to connect to server");
         }
     };
@@ -53,20 +56,24 @@ const Login = () => {
 
             <form onSubmit={handleLogin}>
                 <div>
-                    <label>Email</label>
+                    <label htmlFor="email">Email</label>
 
                     <input
+                        id="email"
                         type="email"
                         value={email}
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={(event) =>
+                            setEmail(event.target.value)
+                        }
                         required
                     />
                 </div>
 
                 <div>
-                    <label>Password</label>
+                    <label htmlFor="password">Password</label>
 
                     <input
+                        id="password"
                         type="password"
                         value={password}
                         onChange={(event) =>
